@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.div`
+export const Container = styled.div`
     display: flex;
     height: 80vh;
     justify-content: center;
@@ -8,13 +8,13 @@ export const LoginContainer = styled.div`
 
     img {
         width: 40vw;
-        height: 50vh;
+        height: 57vh;
     }
 `;
 
 export const FormContainer = styled.form`
     width: 40vw;
-    height: 50vh;
+    height: 57vh;
     background-color: #3888c2;
     display: flex;
     flex-direction: column;
