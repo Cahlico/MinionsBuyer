@@ -7,17 +7,13 @@ export default function Header() {
 
     const [clicked, setClicked] = useState(false);
 
-    function menuHandler() {
-        setClicked(!clicked);
-    }
-
     return (
         <>
             <HeaderContainter>
                 <h1>Minions Shop</h1>
                 {clicked
-                    ? <BsChevronDown onClick={menuHandler} />
-                    : <BsChevronUp onClick={menuHandler} />
+                    ? <BsChevronDown onClick={() => setClicked(!clicked)} />
+                    : <BsChevronUp onClick={() => setClicked(!clicked)} />
                 }
             </HeaderContainter>
             <Menu clicked={clicked} >

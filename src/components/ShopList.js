@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { IoIosAddCircle, IoIosRemoveCircle} from 'react-icons/io'
 
-export default function ShopList() {
+export default function ShopList(props) {
 
+    const { selected, setSelected } = props;
     const [quantity, setQuantity] = useState(0);
 
+    useEffect(() => {
+        if(quantity === 1) {
+            setSelected([...selected, quantity]);
+        }
+    }, [quantity]);
+
     function removeQuantity() {
-        if(quantity >= 1) setQuantity(quantity - 1);
+        if(quantity > 1) setQuantity(quantity - 1);
+        else {
+            if(quantity === 1) {
+                selected.pop();
+                setQuantity(quantity - 1);
+                setSelected([...selected]);
+            }
+        }
     }
 
     return (
