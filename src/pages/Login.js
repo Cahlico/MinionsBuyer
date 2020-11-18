@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Container, FormContainer } from '../styles/styledLogin';
 
@@ -8,6 +8,7 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [clicked, setClicked] = useState(false);
+    const history = useHistory();
 
     function sendRequest(event) {
         event.preventDefault();
@@ -18,6 +19,8 @@ export default function Login() {
         }
 
         setClicked(true);
+
+        history.push('./shop-page');
     }
 
     return (

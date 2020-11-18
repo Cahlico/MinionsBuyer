@@ -43,7 +43,6 @@ export const FormContainer = styled.form`
         border-radius: 3px;
         padding: 13px 5px;
         outline-style: none;
-        background-color: #fae52a;
         color: #3888c2;
         margin: 5px 0;
         font-size: 16px;
@@ -52,6 +51,7 @@ export const FormContainer = styled.form`
 
     input {
         text-align: center;
+        background-color: #f7f4b2;
         
         ::placeholder {
             color: #7ba9d1;
@@ -60,6 +60,7 @@ export const FormContainer = styled.form`
 
     button {
         margin-top: 20px;
+        background-color: #fae52a;
         cursor: pointer;
     }
 
