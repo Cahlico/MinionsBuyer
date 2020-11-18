@@ -14,7 +14,10 @@ export default function ShopList(props) {
     }, [quantity]);
 
     function removeQuantity() {
-        if(quantity > 1) setQuantity(quantity - 1);
+        if(quantity > 1) {
+            setQuantity(quantity - 1);
+            selected.pop();
+        }
         else {
             if(quantity === 1) {
                 selected.pop();
@@ -101,6 +104,12 @@ const ShopContainer = styled.main`
             &.remove {
                 color: #d1c73f;
             }
+        }
+    }
+
+    @media(max-width: 650px) {
+        span {
+            width: 95%;
         }
     }
 `;

@@ -43,6 +43,7 @@ const HeaderContainter = styled.header`
     svg {
         font-size: 32px;
         color: #fae52a;
+        margin-right: 20px;
     }
 `;
 

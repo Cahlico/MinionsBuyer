@@ -10,6 +10,14 @@ export const Container = styled.div`
         width: 40vw;
         height: 57vh;
     }
+
+    @media(max-width: 650px) {
+        img {
+            margin-top: 30%;
+            width: 100vw;
+            height: 70vh;
+        }
+    }
 `;
 
 export const FormContainer = styled.form`
@@ -66,5 +74,11 @@ export const FormContainer = styled.form`
 
     button:hover {
         background-color: #dbd437;
+    }
+
+    @media(max-width: 650px) {
+        margin-top: 30%;
+        width: 100vw;
+        height: 70vh;
     }
 `;
