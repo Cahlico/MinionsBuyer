@@ -18,7 +18,6 @@ export default function Header() {
             </HeaderContainter>
             <Menu clicked={clicked} >
                 <a>history</a>
-                <Link to='/'>logout</Link>
             </Menu>
         </>
     );
@@ -44,6 +43,12 @@ const HeaderContainter = styled.header`
         font-size: 32px;
         color: #fae52a;
         margin-right: 20px;
+    }
+
+    @media(max-width: 600px) {
+        svg {
+            margin-right: 8px;
+        }
     }
 `;
 

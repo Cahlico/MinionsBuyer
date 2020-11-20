@@ -4,12 +4,13 @@ import { IoIosAddCircle, IoIosRemoveCircle} from 'react-icons/io'
 
 export default function ShopList(props) {
 
-    const { selected, setSelected } = props;
+    const { product, selected, setSelected } = props;
+    const { title, description, price, productUrl } = product;
     const [quantity, setQuantity] = useState(0);
 
     useEffect(() => {
         if(quantity === 1) {
-            setSelected([...selected, quantity]);
+            setSelected([...selected, true]);
         }
     }, [quantity]);
 
@@ -29,87 +30,62 @@ export default function ShopList(props) {
 
     return (
         <ShopContainer>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-                <div><strong>Minion Stuart</strong><strong>R$ 29,99</strong></div>
-                <p>Boneco Minions Stuart Filme Tamanho Pequeno</p>
-                <div>
-                    <IoIosAddCircle onClick={() => setQuantity(quantity + 1)} />
-                    <p>{quantity > 0 ? quantity : ''}</p>
-                    <IoIosRemoveCircle  className='remove' onClick={removeQuantity} />
-                </div>
-            </span>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-            </span>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-            </span>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-            </span>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-            </span>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-            </span>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-            </span>
-            <span>
-                <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcShI62H_s2tVghBMOZxDXmi1hqsdxUzI1MkDYEDH-hDJClYigUSf1hpLOMOzOGQyrQU2oQSLp0uZh9p9nszwPlJCmSZnN6VgZIOCZreOz0FdoAddup-gFXGHQ&usqp=CAE' />
-            </span>
+            <img src={productUrl} />
+            <div><strong>{title}</strong><strong>R$ {price}</strong></div>
+            <p>{description}</p>
+            <div>
+                <IoIosAddCircle onClick={() => setQuantity(quantity + 1)} />
+                <p>{quantity > 0 ? quantity : ''}</p>
+                <IoIosRemoveCircle  className='remove' onClick={removeQuantity} />
+            </div>
         </ShopContainer>
     );
 }
 
-const ShopContainer = styled.main`
-    padding: 130px 10% 100px 10%;
-    display: flex;
-    flex-wrap: wrap;
+const ShopContainer = styled.div`
+    height: 300px;
+    width: 15%;
+    border: 2px solid #3888c2;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 2.5%;
 
     img {
         width: 100%;
+        height: 65%;
     }
 
-    span {
-        width: 15%;
-        border: 2px solid #3888c2;
-        border-radius: 10px;
-        overflow: hidden;
-        margin: 10px 2.5%;
+    strong, p {
+        padding: 5px;
+        color: #3888c2;
+        font-size: 12px;
+    }
 
-        strong, p {
-            padding: 5px;
-            color: #3888c2;
-            font-size: 12px;
+    div {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            margin-top: 6px;
         }
+    }
 
-        div {
-            display: flex;
-            justify-content: space-between;
+    svg {
+        padding: 5px;
+        font-size: 35px;
+        color: #3888c2;
+        cursor: pointer;
 
-            p {
-                margin-top: 6px;
-            }
-        }
-
-        svg {
-            padding: 5px;
-            font-size: 35px;
-            color: #3888c2;
-            cursor: pointer;
-
-            &.remove {
-                color: #d1c73f;
-            }
+        &.remove {
+            color: #d1c73f;
         }
     }
 
     @media(max-width: 650px) {
-        span {
-            width: 95%;
+        width: 95%;
+
+        img {
+            height: 72%;
         }
     }
 `;
