@@ -8,8 +8,8 @@ import { ProductList } from '../styles/styledShop';
 
 export default function ShopPage() {
 
-    const [selected, setSelected] = useState([]);
     const [products, setProducts] = useState([]);
+    let [selectedProducts, setSelectedProducts] = useState([]);
 
     console.log(products)
 
@@ -25,6 +25,16 @@ export default function ShopPage() {
         });
     }, []);
 
+    function cartController(product, type) {
+        if(type === 'add') {
+            setSelectedProducts([...selectedProducts, product]);
+        } else {
+            const index = selectedProducts.indexOf(product);
+            selectedProducts.splice(index, 1);
+            setSelectedProducts([...selectedProducts]);
+        }
+    }
+
     return (
         <>
             <Header />
@@ -33,16 +43,15 @@ export default function ShopPage() {
                     ? products.map(product => (
                         <ShopList
                             product={product}
-                            selected={selected}
-                            setSelected={setSelected}
+                            cartController={cartController}
                             key={product.productId}
                         />
                     ))
                     : <img src='https://i.gifer.com/GW5A.gif' />
                 }
             </ProductList>
-            {selected.length !== 0
-                ? <Footer />
+            {selectedProducts.length !== 0
+                ? <Footer selectedProducts={selectedProducts} />
                 : ''
             }
         </>

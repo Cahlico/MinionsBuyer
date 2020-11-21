@@ -3,13 +3,23 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaOpencart } from 'react-icons/fa';
 
-export default function Footer() {
+export default function Footer(props) {
+
+    const { selectedProducts } = props;
+    let totalPrice = 0;
+    
+    selectedProducts.forEach(prod => {
+        totalPrice += prod.price;
+    });
 
     return (
         <>
             <FooterContainter>
-                <FaOpencart />
-                <h1>Checkout</h1>
+                <span>
+                    <FaOpencart />
+                    <h1>Checkout</h1>
+                </span>
+                <strong>{totalPrice.toFixed(2).replace('.', ',')}</strong>
             </FooterContainter>
         </>
     );
@@ -22,18 +32,31 @@ const FooterContainter = styled.header`
     left: 0;
     background-color: #3888c2;
     display: flex;
-    padding: 20px;
-    height: 80px;
+    justify-content: space-between;
+    padding: 10px 5%;
+    height: 60px;
     z-index: 10;
+
+    span {
+        display: flex;
+    }
 
     svg {
         color: #fae52a;
         font-size: 45px;
+        cursor: pointer;
     }
 
     h1 {
         font-size: 32px;
         color: #fae52a;
         padding-left: 30px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    strong {
+        color: #fae52a;
+        padding: 10px 0;
     }
 `;

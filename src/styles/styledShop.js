@@ -6,7 +6,7 @@ export const ProductList = styled.main`
     flex-wrap: wrap;
 
     & > img {
-        width: 80%
+        width: 100%
         margin-top: 50px;
     }
 `;
