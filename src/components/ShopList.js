@@ -31,7 +31,7 @@ export default function ShopList(props) {
             <div><strong>{title}</strong><strong>R$ {price}</strong></div>
             <p>{description}</p>
             <div>
-                <IoIosAddCircle onClick={addToCart} />
+                <IoIosAddCircle className='add' onClick={addToCart} />
                 <p>{quantity > 0 ? quantity : ''}</p>
                 <IoIosRemoveCircle  className='remove' onClick={removeFromCart} />
             </div>
@@ -46,6 +46,7 @@ const ShopContainer = styled.div`
     border-radius: 10px;
     overflow: hidden;
     margin: 10px 2.5%;
+    position: relative;
 
     img {
         width: 100%;
@@ -61,20 +62,30 @@ const ShopContainer = styled.div`
     div {
         display: flex;
         justify-content: space-between;
-
+        
         p {
-            margin-top: 6px;
+            position: absolute;
+            bottom: 5px;
+            left: 47%;
         }
     }
 
     svg {
-        padding: 5px;
-        font-size: 35px;
+        font-size: 25px;
         color: #3888c2;
         cursor: pointer;
 
+        &.add {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+        }
+
         &.remove {
+            position: absolute;
             color: #d1c73f;
+            right: 5px;
+            bottom: 5px;
         }
     }
 

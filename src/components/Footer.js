@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaOpencart } from 'react-icons/fa';
@@ -14,18 +14,22 @@ export default function Footer(props) {
 
     return (
         <>
-            <FooterContainter>
+            <FooterContainer>
                 <span>
-                    <FaOpencart />
-                    <h1>Checkout</h1>
+                    <Link to={{ pathname:'/checkout', state: { selectedProducts, totalPrice }}}>
+                        <FaOpencart />
+                    </Link>
+                    <Link to={{ pathname:'/checkout', state: { selectedProducts, totalPrice }}} >     
+                        <h1>Checkout</h1>
+                    </Link>
                 </span>
                 <strong>{totalPrice.toFixed(2).replace('.', ',')}</strong>
-            </FooterContainter>
+            </FooterContainer>
         </>
     );
 }
 
-const FooterContainter = styled.header`
+const FooterContainer = styled.header`
     width: 100vw;
     position: fixed;
     bottom: 0;

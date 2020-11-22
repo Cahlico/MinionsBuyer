@@ -11,8 +11,6 @@ export default function ShopPage() {
     const [products, setProducts] = useState([]);
     let [selectedProducts, setSelectedProducts] = useState([]);
 
-    console.log(products)
-
     useEffect(() => {
         const request = axios.get('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/products');
 
