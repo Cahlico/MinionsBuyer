@@ -40,7 +40,7 @@ export default function Checkout() {
                 <ProductsContainer>
                     {selectedProducts.map((prod, i) => (
                         <Products key={prod.productId + 5*i}> 
-                            <p>{i}</p>
+                            <p>{i + 1}</p>
                             <p>{prod.title}</p>
                             <p>{prod.price.toFixed(2).replace('.', ',')}</p>
                         </Products>
