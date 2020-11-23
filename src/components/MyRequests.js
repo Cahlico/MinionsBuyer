@@ -4,7 +4,6 @@ import Modal from 'react-modal';
 
 import SessionContext from '../contexts/SessionContext';
 import { modalStyles, HistoryScreen, Load } from '../styles/styledHistory';
-import { useHistory } from 'react-router-dom';
 
 export default function MyRequests() {
 
@@ -21,9 +20,9 @@ export default function MyRequests() {
             setProducts(response.data.products);
             setLoading(false);
             setTotalPrice(response.data.totalPrice);
-            console.log(response.data)
         });
-    });
+        request.catch(() => console.log('no posts yet'));
+    }, []);
 
     return(
         <>
@@ -40,8 +39,8 @@ export default function MyRequests() {
                         ? <Load src='https://i.gifer.com/GW5A.gif' />
                         : products.length !== 0
                             ? <>
-                                {products.map(prod => (
-                                    <p>{prod.title} {prod.price.toFixed(2).replace('.', ',')}</p>
+                                {products.map((prod, i) => (
+                                    <p key={prod.productId * i * 3} >{prod.title} {prod.price.toFixed(2).replace('.', ',')}</p>
                                 ))}
                                 <p>total: {totalPrice.toFixed(2).replace('.', ',')}</p>
                             </>
