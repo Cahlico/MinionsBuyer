@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const CheckoutContainer = styled.div`
-    padding: 120px 10% 0px 10%;
-    display: flex;
+    padding: 120px 10% 10px 10%;
 `;
 
 export const ProductsContainer = styled.div`
@@ -44,6 +43,13 @@ export const Products = styled.div`
 
     p {
         margin: 5px 0;
+        font-size: 22px;
         color: #3888c2;
+    }
+
+    @media(max-width: 600px) {
+        p {
+            margin: 10px 0;
+        }
     }
 `;

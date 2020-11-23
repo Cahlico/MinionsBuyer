@@ -15,6 +15,8 @@ export default function MyRequests() {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
+        if(!userId) return;
+        
         const request = axios.get(`https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/products/${userId}`, { headers: { 'Authorization': `bearer ${token}`}});
         request.then(response => {
             setProducts(response.data.products);
@@ -40,7 +42,7 @@ export default function MyRequests() {
                         : products.length !== 0
                             ? <>
                                 {products.map((prod, i) => (
-                                    <p key={prod.productId * i * 3} >{prod.title} {prod.price.toFixed(2).replace('.', ',')}</p>
+                                    <p key={(prod.productId + i) * (i*3)} >{prod.title} {prod.price.toFixed(2).replace('.', ',')}</p>
                                 ))}
                                 <p>total: {totalPrice.toFixed(2).replace('.', ',')}</p>
                             </>
