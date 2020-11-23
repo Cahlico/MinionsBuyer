@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
 import Header from '../components/Header';
 import { CheckoutContainer, ProductsContainer, Products } from '../styles/styledCheckout';
+import SessionContext from '../contexts/SessionContext';
 
 export default function Checkout() {
 
     const { state } = useLocation();
-    console.log(state);
     const { selectedProducts, totalPrice } = state;
     const [email, setEmail] = useState('');
     const [cep, setCep] = useState('');
     const [address, setAddress] = useState('');
+    const { session } = useContext(SessionContext);
+    const { token } = session;
 
     function  purchaseRequest() {
         const format = /^[0-9]{5}\-[0-9]{3}$/;
@@ -27,7 +29,7 @@ export default function Checkout() {
 
         const buyFormat = {email, cep, address, totalPrice, 'products': selectedProducts};
 
-        const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/user/products', buyFormat);
+        const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/user/products', buyFormat, { headers: { 'Authorization': `bearer ${token}`}});
         request.catch(() => {
             alert('your request has failed please try again');
         })

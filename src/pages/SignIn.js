@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input';
+import bcrypt from 'bcryptjs';
 
 import SessionContext from '../contexts/SessionContext';
 import { Container, FormContainer } from '../styles/styledLogin';
@@ -12,44 +13,44 @@ export default function SignIn() {
     const [password, setPassword] = useState('');
     const [clicked, setClicked] = useState(false);
     const { session, setSession } = useContext(SessionContext);
-    const [userId, setUserId] = useState(null);
+    const [users, setUsers] = useState(null);
     const history = useHistory();
 
     useEffect(() => {
-        if(email.length <= 3) return;
+        if(email.length <= 3 && password.length <= 3) return;
 
         const request = axios.get('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/users');
         request.then(response => {
-            const user = response.data.find(e => e.email === email);
-
-            if(user) setUserId(user.userId);
+            setUsers(response.data);
+            console.log(users);
         });
-    }, [email]);
+    }, [email, password]);
 
     function sendRequest(event) {
         event.preventDefault();
 
-
-
         if(email === '' || password === '') {
             alert('Fill in all the filds');
             return;
-        } else if (!userId) {
-            alert('Current user is not registered');
-            return;
         }
+
+        const user = users.find(e => {
+            return e.email === email && bcrypt.compareSync(password, e.password);
+        });
+
+        if(!user) return alert('current user is not registered');
 
         setClicked(true);
 
-        const requestFormat = { email, password, userId };
+        const requestFormat = { email, password, userId: user.userId };
         const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/sign-in', requestFormat);
         request.then(response => {
             const { userId, email, token } = response.data;
             setSession({...session, userId, email, token});
             history.push('./shop-page');
         });
-        request.catch(() => {
-            alert('invalid email');
+        request.catch(response => {
+            alert(response);
             setClicked(false);
         });
     }
@@ -68,8 +69,10 @@ export default function SignIn() {
                         value={email}
                         placeholder='e-mail'
                     />
-                    <input
+                    <DebounceInput
                         type='password'
+                        minLength={3}
+                        debounceTimeout={300}
                         onChange={e => setPassword(e.target.value)}
                         value={password}
                         placeholder='password'
