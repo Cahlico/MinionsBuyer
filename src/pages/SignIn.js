@@ -22,7 +22,6 @@ export default function SignIn() {
         const request = axios.get('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/users');
         request.then(response => {
             setUsers(response.data);
-            console.log(users);
         });
     }, [email, password]);
 

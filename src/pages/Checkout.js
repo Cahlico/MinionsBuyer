@@ -14,7 +14,7 @@ export default function Checkout() {
     const [cep, setCep] = useState('');
     const [address, setAddress] = useState('');
     const { session } = useContext(SessionContext);
-    const { token, email } = session;
+    const { token, email, userId } = session;
     const history = useHistory();
 
     function  purchaseRequest(event) {
@@ -30,7 +30,7 @@ export default function Checkout() {
             return;
         }
 
-        const buyFormat = {email, cep, address, totalPrice, 'products': selectedProducts};
+        const buyFormat = {userId, email, cep, address, totalPrice, 'products': selectedProducts};
 
         const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/user/products', buyFormat, { headers: { 'Authorization': `bearer ${token}`}});
         request.then(() => {

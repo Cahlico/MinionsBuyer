@@ -24,6 +24,7 @@ export const HistoryScreen = styled.div`
     color: #f7f4b2;
     text-align: center;
     border-radius: 20px;
+    overflow-y: scroll;
 
     h1 {
         font-size: 40px;
@@ -31,31 +32,10 @@ export const HistoryScreen = styled.div`
         padding: 30px 20px;
     }
 
-    button {
-        border: none;
-        border-radius: 3px;
-        padding: 10px 5px;
-        outline-style: none;
-        font-size: 16px;
+    p {
+        font-size: 22px;
         font-weight: bold;
-        width: 20%;
-        margin-right: 20px;
-        margin-top: 10px;
-        background-color: #FFF;
-        color: #3091b8;
-
-        &.delete {
-            color: #FFF;
-            background-color: #3091b8;
-        }
-    }
-
-    button:hover {
-        background-color: #d4d6d9;
-
-        &.delete{
-            background-color: #5db0cf;
-        }
+        padding: 10px 25%;
     }
 
     @media(max-width: 600px) {
@@ -69,8 +49,8 @@ export const HistoryScreen = styled.div`
 `;
 
 export const Load = styled.img`
-    width: 20%;
-    margin: -20px 40%;
+    width: 50%;
+    margin: 0 25%;
 
     @media (max-width: 600px) {
         width: 60vw;

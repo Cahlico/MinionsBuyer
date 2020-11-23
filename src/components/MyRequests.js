@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 
 import SessionContext from '../contexts/SessionContext';
 import { modalStyles, HistoryScreen, Load } from '../styles/styledHistory';
+import { useHistory } from 'react-router-dom';
 
 export default function MyRequests() {
 
@@ -12,20 +13,21 @@ export default function MyRequests() {
     const { session } = useContext(SessionContext);
     const { token, userId } = session;
     const [products, setProducts] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
         const request = axios.get(`https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/products/${userId}`, { headers: { 'Authorization': `bearer ${token}`}});
         request.then(response => {
-            response.data.forEach(e => {
-                console.log(e);
-            });
+            setProducts(response.data.products);
             setLoading(false);
-        })
+            setTotalPrice(response.data.totalPrice);
+            console.log(response.data)
+        });
     });
 
     return(
         <>
-            <a onClick={() => setIsOpen(true)} >History</a>
+            <a onClick={() => setIsOpen(true)} >Last buy</a>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={() => setIsOpen(false)}
@@ -33,13 +35,15 @@ export default function MyRequests() {
                 contentLabel="purchase history"
             >
                 <HistoryScreen>
-                    <h1>Your purchases</h1>
+                    <h1>Last purchase</h1>
                     {loading
                         ? <Load src='https://i.gifer.com/GW5A.gif' />
                         : products.length !== 0
                             ? <>
-                                <button onClick={() => setIsOpen(false)}>Cancelar</button>
-                                <button onClick={() => deletePost()} className='delete'>Excluir</button>
+                                {products.map(prod => (
+                                    <p>{prod.title} {prod.price.toFixed(2).replace('.', ',')}</p>
+                                ))}
+                                <p>total: {totalPrice.toFixed(2).replace('.', ',')}</p>
                             </>
                             : <p>Your purchases are still empty</p>   
                     }
