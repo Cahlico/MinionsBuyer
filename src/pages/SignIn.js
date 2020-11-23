@@ -47,7 +47,7 @@ export default function SignIn() {
         request.then(response => {
             const { userId, email, token } = response.data;
             setSession({...session, userId, email, token});
-            history.push('./shop-page');
+            history.push('/shop-page');
         });
         request.catch(response => {
             alert(response);

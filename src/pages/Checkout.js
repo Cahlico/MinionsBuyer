@@ -1,28 +1,31 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 import Header from '../components/Header';
 import { CheckoutContainer, ProductsContainer, Products } from '../styles/styledCheckout';
 import SessionContext from '../contexts/SessionContext';
+import { DebounceInput } from 'react-debounce-input';
 
 export default function Checkout() {
 
     const { state } = useLocation();
     const { selectedProducts, totalPrice } = state;
-    const [email, setEmail] = useState('');
     const [cep, setCep] = useState('');
     const [address, setAddress] = useState('');
     const { session } = useContext(SessionContext);
-    const { token } = session;
+    const { token, email } = session;
+    const history = useHistory();
 
-    function  purchaseRequest() {
+    function  purchaseRequest(event) {
+        event.preventDefault()
+
         const format = /^[0-9]{5}\-[0-9]{3}$/;
 
         if(!format.test(cep)) {
             alert('invalid cep');
             return;
-        } else if(email === '' || address === '') {
+        } else if(address === '') {
             alert('fill in all the filds');
             return;
         }
@@ -30,8 +33,12 @@ export default function Checkout() {
         const buyFormat = {email, cep, address, totalPrice, 'products': selectedProducts};
 
         const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/user/products', buyFormat, { headers: { 'Authorization': `bearer ${token}`}});
-        request.catch(() => {
-            alert('your request has failed please try again');
+        request.then(() => {
+            alert('success!');
+            history.push('/shop-page');
+        })
+        request.catch((response) => {
+            alert(`${response} - your request has failed please try again`);
         })
     }
 
@@ -52,20 +59,19 @@ export default function Checkout() {
                         <p>{totalPrice.toFixed(2).replace('.', ',')}</p>
                     </Products>
                     <form onSubmit={purchaseRequest}>
-                        <input 
-                            type='email' 
-                            onChange={e => setEmail(e.target.value)} 
-                            value={email} 
-                            placeholder='e-mail'
-                        />
-                        <input 
+                        <DebounceInput
                             type='text' 
+                            minLength={8}
+                            debounceTimeout={300}
                             onChange={e => setCep(e.target.value)} 
                             value={cep} 
-                            placeholder='cep'
+                            placeholder='cep: 12345-678'
                         />
-                        <textarea 
-                            type='text' 
+                        <DebounceInput 
+                            type='text'
+                            element="textarea"
+                            minLength={5}
+                            debounceTimeout={400}
                             onChange={e => setAddress(e.target.value)} 
                             value={address} 
                             placeholder='address'

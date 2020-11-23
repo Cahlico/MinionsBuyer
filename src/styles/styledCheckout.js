@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CheckoutContainer = styled.div`
-    padding: 130px 10% 100px 10%;
+    padding: 120px 10% 0px 10%;
     display: flex;
 `;
 
@@ -24,6 +24,10 @@ export const ProductsContainer = styled.div`
             font-size: 16px;
             font-weight: bold;
             color: #665756;
+        }
+
+        textarea {
+            height: 120px;
         }
 
         button {

@@ -12,6 +12,8 @@ export default function Footer(props) {
         totalPrice += prod.price;
     });
 
+    console.log(selectedProducts);
+
     return (
         <>
             <FooterContainer>
