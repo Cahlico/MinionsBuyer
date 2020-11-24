@@ -6,7 +6,7 @@
 
 ## Objective
 <p>
-   This project was developed throughout the BGC challenge, it is a Single-Page Application using React. Its is a simples shop page, the user can register, log in, buy and see their last purchases.
+   This project was developed throughout the BGC challenge, it is a Single-Page Application using React. Its is a simple shop page, the user can register, log in, buy and see their last purchases.
 </p>
 
 ### Features
