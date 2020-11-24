@@ -40,16 +40,14 @@ export default function SignIn() {
 
         setClicked(true);
 
-        const requestFormat = sanitize();
+        const requestFormat = { email, password, userId: user.userId };
         const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/sign-in', requestFormat);
         request.then(response => {
             const { userId, email, token } = response.data;
             setSession({...session, userId, email, token});
             history.push('/shop-page');
-            /*const { userId, email, token } = response.data;
-            setUserInfo({ ...userInfo, data });
-            const jsonData = JSON.stringify({{ userId, email, token }});
-            localStorage.data = jsonData;*/
+            const jsonData = JSON.stringify({ userId, email, token });
+            localStorage.data = jsonData;
         });
         request.catch(response => {
             alert(response);

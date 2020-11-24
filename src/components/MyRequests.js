@@ -23,7 +23,6 @@ export default function MyRequests() {
             setLoading(false);
             setTotalPrice(response.data.totalPrice);
         });
-        request.catch(() => console.log('no posts yet'));
     }, []);
 
     return(

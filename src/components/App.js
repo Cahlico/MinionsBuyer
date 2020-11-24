@@ -9,9 +9,8 @@ import SessionContext from '../contexts/SessionContext';
 
 export default function App() {
 
-    const [session, setSession] = useState({});
-    /*const localData = localStorage.data !== undefined ? JSON.parse(localStorage.data) : {};
-    const [userInfo, setUserInfo] = useState(localData);*/
+    const localData = localStorage.data !== undefined ? JSON.parse(localStorage.data) : {};
+    const [session, setSession] = useState(localData);
 
     return (
         <SessionContext.Provider value={{ session, setSession }} >
