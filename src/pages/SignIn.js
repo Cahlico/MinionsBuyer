@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input';
-import bcrypt from 'bcryptjs';
 
 import SessionContext from '../contexts/SessionContext';
 import { Container, FormContainer } from '../styles/styledLogin';
@@ -34,19 +33,23 @@ export default function SignIn() {
         }
 
         const user = users.find(e => {
-            return e.email === email && bcrypt.compareSync(password, e.password);
+            return e.email === email;
         });
 
         if(!user) return alert('current user is not registered');
 
         setClicked(true);
 
-        const requestFormat = { email, password, userId: user.userId };
+        const requestFormat = sanitize();
         const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/sign-in', requestFormat);
         request.then(response => {
             const { userId, email, token } = response.data;
             setSession({...session, userId, email, token});
             history.push('/shop-page');
+            /*const { userId, email, token } = response.data;
+            setUserInfo({ ...userInfo, data });
+            const jsonData = JSON.stringify({{ userId, email, token }});
+            localStorage.data = jsonData;*/
         });
         request.catch(response => {
             alert(response);
