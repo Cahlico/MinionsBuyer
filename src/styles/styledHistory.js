@@ -25,6 +25,7 @@ export const HistoryScreen = styled.div`
     text-align: center;
     border-radius: 20px;
     overflow-y: scroll;
+    position: relative;
 
     h1 {
         font-size: 40px;
@@ -36,6 +37,14 @@ export const HistoryScreen = styled.div`
         font-size: 22px;
         font-weight: bold;
         padding: 10px 25%;
+    }
+
+    svg {
+        position: absolute;
+        font-size: 20px;
+        color: #f7f4b2;
+        top: 10px;
+        right: 15px;
     }
 
     @media(max-width: 600px) {

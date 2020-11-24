@@ -34,6 +34,12 @@ export const ProductsContainer = styled.div`
             color: #fae52a;
         }
     }
+
+    img {
+        padding-top: 20px;
+        margin-left: 10px;
+        height: 250px;
+    }
 `;
 
 export const Products = styled.div`
