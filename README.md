@@ -37,6 +37,7 @@ The following tools and frameworks were used in the construction of the project:
     <img src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&logo=styled-components&logoColor=%2361DAFB'>
 
 #Folow the link project.
+
 - [Link](https://cahlico.github.io/MinionsBuyer)
 
 ### Author
