@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import  { BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import { HeaderContainter, Menu } from '../styles/styledHeader';
@@ -31,7 +31,7 @@ export default function Header() {
     return (
         <>
             <HeaderContainter>
-                <h1>Minions Shop</h1>
+                <Link to='/shop-page'><h1>Minions Shop</h1></Link>
                 {clicked
                     ? <BsChevronDown onClick={() => setClicked(!clicked)} />
                     : <BsChevronUp onClick={() => setClicked(!clicked)} />

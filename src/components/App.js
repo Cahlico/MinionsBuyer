@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 
+import SessionContext from '../contexts/SessionContext';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import ShopPage from '../pages/ShopPage';
 import Checkout from '../pages/Checkout';
-import SessionContext from '../contexts/SessionContext';
 
 export default function App() {
 

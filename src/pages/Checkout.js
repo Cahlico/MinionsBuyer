@@ -26,9 +26,11 @@ export default function Checkout() {
 
         if(!format.test(cep)) {
             alert('invalid cep');
+            setLoading(false);
             return;
         } else if(address === '') {
             alert('fill in all the filds');
+            setLoading(false);
             return;
         }
 
@@ -36,7 +38,6 @@ export default function Checkout() {
 
         const request = axios.post('https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/user/products', buyFormat, { headers: { 'Authorization': `bearer ${token}`}});
         request.then(() => {
-            setLoading(false);
             alert('success!');
             history.push('/shop-page');
         })
