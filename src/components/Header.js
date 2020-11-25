@@ -13,14 +13,18 @@ export default function Header() {
     const { session } = useContext(SessionContext);
     const { userId } = session;
     const history = useHistory();
+    const [loading, setLoading] = useState(false);
 
     function logout() {
+        setLoading(true);
+
         const request = axios.delete(`https://7247bwzla1.execute-api.sa-east-1.amazonaws.com/prod/sign-out/${userId}`);
         request.then(() => {
             history.push('/');
         });
         request.catch(response => {
             alert(response);
+            setLoading(false);
         });
     }
 
@@ -34,7 +38,10 @@ export default function Header() {
                 }
             </HeaderContainter>
             <Menu clicked={clicked} >
-                <a onClick={logout}>Logout</a>
+                {loading
+                    ? <img src='https://www.belmahotels.com/wp-content/themes/belma_child/img/loader.gif' />
+                    :  <a onClick={logout}>Logout</a>
+                }
                 <MyRequests />
             </Menu>
         </>

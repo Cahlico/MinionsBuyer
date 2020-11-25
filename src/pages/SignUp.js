@@ -34,7 +34,7 @@ export default function SignUp() {
         });
 
         request.catch(() => {
-            alert('email cadastrado já está em uso');
+            alert('current email already attached to an account');
             setClicked(false);
         });
     }

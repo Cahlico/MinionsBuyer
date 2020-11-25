@@ -45,4 +45,8 @@ export const Menu = styled.nav`
         padding-top: 8px;
         cursor: pointer;
     }
+
+    img {
+        height: 30px;
+    }
 `;

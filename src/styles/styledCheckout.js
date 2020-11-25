@@ -37,8 +37,8 @@ export const ProductsContainer = styled.div`
 
     img {
         padding-top: 20px;
-        margin-left: 10px;
-        height: 250px;
+        margin-left: 3%;
+        width: 30%;
     }
 `;
 
