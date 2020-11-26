@@ -38,7 +38,7 @@ The following tools and frameworks were used in the construction of the project:
 
 #Folow the link project.
 
-- [Link](https://cahlico.github.io/MinionsBuyer)
+- [Link](http://minions-buyer.s3-website-sa-east-1.amazonaws.com)
 
 ### Author
 ---
