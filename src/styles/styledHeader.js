@@ -47,6 +47,6 @@ export const Menu = styled.nav`
     }
 
     img {
-        height: 30px;
+        height: 40px;
     }
 `;

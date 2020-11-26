@@ -41,8 +41,8 @@ export default function Checkout() {
             alert('success!');
             history.push('/shop-page');
         })
-        request.catch((response) => {
-            alert(`${response} - your request has failed please try again`);
+        request.catch(() => {
+            alert('invalid adress - your request has failed please try again');
             setLoading(false);
         })
     }

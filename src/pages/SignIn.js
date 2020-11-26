@@ -49,7 +49,7 @@ export default function SignIn() {
             const jsonData = JSON.stringify({ userId, email, token });
             localStorage.data = jsonData;
         });
-        request.catch(response => {
+        request.catch(() => {
             alert('incorrect email or password');
             setClicked(false);
         });
