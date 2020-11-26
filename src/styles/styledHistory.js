@@ -49,7 +49,7 @@ export const HistoryScreen = styled.div`
 
     @media(max-width: 600px) {
         width: 90vw;
-        height: 38vh;
+        height: 70vh;
         
          button {
              width: 30%;

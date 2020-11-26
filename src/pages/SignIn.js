@@ -50,7 +50,7 @@ export default function SignIn() {
             localStorage.data = jsonData;
         });
         request.catch(response => {
-            alert(response);
+            alert('incorrect email or password');
             setClicked(false);
         });
     }

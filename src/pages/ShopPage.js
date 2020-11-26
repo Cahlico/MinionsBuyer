@@ -19,7 +19,7 @@ export default function ShopPage() {
         });
 
         request.catch(() => {
-            alert('something went wrong');
+            alert('something went wrong, please reload the page');
         });
     }, []);
 

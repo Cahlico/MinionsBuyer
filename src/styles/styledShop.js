@@ -9,4 +9,13 @@ export const ProductList = styled.main`
         width: 100%
         margin-top: 50px;
     }
+
+    media(max-width: 650px)} {
+        padding: 130px 10% 100px 10%;
+
+        & > img {
+            padding-top: 10%;
+            width: 80vw;
+        }
+    }
 `;
